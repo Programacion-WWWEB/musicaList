@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ranking</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="menu">
+			<a th:href="@{/generos}"><img src="./Imagenes/Logos/menu.png" alt="Géneros" id="generos-btn"> </a>
+			
+		</div>
+	
+		<div class="logo">
+				<a th:href="@{/main}"><img src="./Imagenes/Logos/logo.jpg" alt="Logo"></a>
+		</div>
+	
+		<div class="buscador">
+			<input type="text" placeholder="Buscar">
+		</div>
+	
+	</header>
+
+	<!-- Body -->
+	<div class="inicio_sesion">
+		<h2>Iniciar Sesión</h2>
+			<form >
+					<label for="usuario">Usuario:</label>
+					<input type="text" id="usuario" name="usuario" required>
+
+					<label for="contrasena">Contraseña:</label>
+					<input type="password" id="contrasena" name="contrasena" required>
+
+					<button type="submit">Iniciar Sesión</button>
+			</form>
+		<a th:href="@{/registro}" ><button style="float: center; margin: 0 auto;">Registrase</button></a>
+	</div>
+	
+  <script src="./script.js"></script>
+</body>
+</html>
