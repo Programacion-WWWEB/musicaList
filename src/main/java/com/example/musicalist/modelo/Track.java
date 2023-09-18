@@ -1,6 +1,8 @@
 package com.example.musicalist.modelo;
 
 import java.sql.Time;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,36 +10,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode(exclude = {"IdUsuario","genero"})
-public class Cancion {
+@EqualsAndHashCode(exclude = "trackId")
+public class Track {
      
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    Long IdUsuario;
+    Long trackId;
      
     @Getter @Setter
-    private String nombre;
+    private String title;
 
     @Getter @Setter
-    private float valoracion;
+    private Time duration;
 
-    @Getter @Setter
-    private int rating;
-    
-    @Getter @Setter 
-    private Time duracion;
-    
     @ManyToOne()
-    @JoinColumn(name = "idgenero")
-    Genero genero;
+    @JoinColumn(name = "albumId")
+    Album album;
+
+    @OneToMany(mappedBy = "track")
+    private Set<Voto> votos = new HashSet<>();
 
 }
