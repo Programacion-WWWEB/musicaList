@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-public class errorController {
+public class ErrorController {
 
         @RequestMapping("/error")
     public String errorPage(HttpServletRequest request, Model model) {
