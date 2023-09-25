@@ -9,24 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode(exclude = "id")
 public class UsuarioVotante{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
+
     @Getter @Setter
     private String nombre;
+
     @Getter @Setter
     private String contrasena;
+
     @Getter @Setter 
     private String correo;
+    
     @Getter @Setter
     private String nombrePerfil;
 
