@@ -27,12 +27,12 @@
 	<!-- Body -->
 	<div class="inicio_sesion">
 		<h2>Iniciar Sesión</h2>
-			<form >
-					<label for="usuario">Usuario:</label>
-					<input type="text" id="usuario" name="usuario" required>
+			<form action="#", th:action="@{/iniciarSesion}" method="POST" th:object="${usuarioVotante}">
+					<label for="nombrePerfil">Usuario:</label>
+					<input type="text" id="nombrePerfil" name="nombrePerfil" th:field"*{nombrePerfil}" required = "obligatorio">
 
 					<label for="contrasena">Contraseña:</label>
-					<input type="password" id="contrasena" name="contrasena" required>
+					<input type="password" id="contrasena" name="contrasena" th:field"*{contrasena}" required = "obligatorio">
 
 					<button type="submit">Iniciar Sesión</button>
 			</form>

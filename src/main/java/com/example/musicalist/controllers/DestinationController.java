@@ -55,18 +55,6 @@ public class DestinationController {
         return "cancion";
     }
 
-    @GetMapping("/registro")
-    public String registroTemplate(){
-
-        return "registro";
-    }
-
-    @GetMapping("/iniciarSesion")
-    public String iniciarSesionTemplate(){
-
-        return "iniciarSesion";
-    }
-
     @GetMapping("/main")
     public String mainTemplate(){
 
