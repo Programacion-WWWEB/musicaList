@@ -29,9 +29,9 @@ public class Voto {
 
     public Voto(){};
 
-    public Voto(Long trackId, Long userId, Track track, UsuarioVotante usuarioVotante) {
-        this.track_id = trackId;
-        this.id = userId;
+    public Voto(Track track, UsuarioVotante usuarioVotante) {
+        this.track_id = track.getTrack_id();
+        this.id = usuarioVotante.getId();
         this.track = track;
         this.usuarioVotante = usuarioVotante;
         

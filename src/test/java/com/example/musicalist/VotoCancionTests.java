@@ -76,7 +76,7 @@ public class VotoCancionTests {
         user.setContrasena("contrasena");
         usuarioVotanteRepository.save(user);
 
-        Voto voto = new Voto(track.getTrack_id(),user.getId(),track,user);
+        Voto voto = new Voto(track,user);
         votoRepository.save(voto);
         
         List<Voto> votosHechos =  votoRepository.findUserVoto(track.getTitle(), user.getNombre());
