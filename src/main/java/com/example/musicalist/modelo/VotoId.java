@@ -12,9 +12,10 @@ import lombok.Setter;
 public class VotoId implements Serializable{
 
     @Getter @Setter
+
     private Long id;
     @Getter @Setter
-    private Long trackId; 
+    private Long track_id; 
 
     @Override
     public boolean equals(Object o) {
@@ -22,12 +23,12 @@ public class VotoId implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
         VotoId votoId = (VotoId) o;
         return Objects.equals(id, votoId.id) &&
-               Objects.equals(trackId, votoId.trackId);
+               Objects.equals(track_id, votoId.track_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, trackId);
+        return Objects.hash(id, track_id);
     }
     
 }

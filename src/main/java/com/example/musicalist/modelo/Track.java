@@ -12,12 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode(exclude = "trackId")
+
 public class Track {
      
 
@@ -25,7 +24,7 @@ public class Track {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    Long trackId;
+    Long track_id;
      
     @Getter @Setter
     private String title;
@@ -34,7 +33,7 @@ public class Track {
     private Time duration;
 
     @ManyToOne()
-    @JoinColumn(name = "albumId")
+    @JoinColumn(name = "album_id")
     @Getter @Setter
     Album album;
 

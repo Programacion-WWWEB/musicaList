@@ -1,11 +1,12 @@
 package com.example.musicalist;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -17,21 +18,31 @@ import com.example.musicalist.modelo.Album;
 import com.example.musicalist.modelo.AlbumRepository;
 import com.example.musicalist.modelo.Track;
 import com.example.musicalist.modelo.TrackRepository;
+import com.example.musicalist.modelo.UsuarioVotante;
+import com.example.musicalist.modelo.UsuarioVotanteRepository;
+import com.example.musicalist.modelo.Voto;
+import com.example.musicalist.modelo.VotoRepository;
+
 
 @SpringBootTest
 @Transactional
-public class TrackFromAlbumTests {
+public class VotoCancionTests {
+
+    @Autowired
+    UsuarioVotanteRepository usuarioVotanteRepository;
+
+    @Autowired
+    TrackRepository trackRepository;
+
+    @Autowired
+    VotoRepository votoRepository;
 
     @Autowired
     private AlbumRepository albumRepository;
-
-    @Autowired
-    private TrackRepository trackRepository;
-
+    
     @Test
-    public void testCreateAlbumAndTrack() {
-        
-        Album album = new Album();
+    public void testVotoUsuario(){
+    Album album = new Album();
         album.setName("Los Gatos");
         album.setArtist("Los Gatos");
         album.setType("Album");
@@ -46,28 +57,33 @@ public class TrackFromAlbumTests {
         }
         album.setRymRating(4.5f);
         album.setLanguague("Spanish");
-        albumRepository.save(album);
+
         
         Track track = new Track();
         track.setTitle("La Balsa");
         track.setDuration(Time.valueOf("00:03:30"));
         track.setAlbum(album);
-        
+
         
         album.getTrackListing().add(track);
-        
+        albumRepository.save(album);
+        trackRepository.save(track);
 
-        
-        Optional<Album> retrievedAlbum = albumRepository.findAlbumByName("Los Gatos");
-        assertThat(retrievedAlbum).isPresent();
+        UsuarioVotante user = new UsuarioVotante();
+        user.setNombre("nombre");
+        user.setNombrePerfil("perfil");
+        user.setCorreo("correo@gmail.com");
+        user.setContrasena("contrasena");
+        usuarioVotanteRepository.save(user);
 
+        Voto voto = new Voto(track.getTrack_id(),user.getId(),track,user);
+        votoRepository.save(voto);
         
-        Iterable<Track> tracksForAlbum = trackRepository.findByAlbum(retrievedAlbum.get().getAlbum_id());
-        assertThat(tracksForAlbum).isNotEmpty();
+        List<Voto> votosHechos =  votoRepository.findUserVoto(track.getTitle(), user.getNombre());
+        
+        assertFalse(votosHechos.isEmpty());
 
-    
-        Track retrievedTrack = tracksForAlbum.iterator().next();
-        assertThat(retrievedTrack.getTitle()).isEqualTo("La Balsa");
     }
+
     
 }
