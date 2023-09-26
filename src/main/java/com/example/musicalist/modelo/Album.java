@@ -24,7 +24,9 @@ public class Album {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long albumId;
+    
     @Getter @Setter
     private String name;
     
@@ -45,6 +47,7 @@ public class Album {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "trackId")
+    @Getter @Setter
     private List<Track> trackListing = new ArrayList<>(); 
 
     @OneToMany(mappedBy = "album")

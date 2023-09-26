@@ -35,6 +35,7 @@ public class Track {
 
     @ManyToOne()
     @JoinColumn(name = "albumId")
+    @Getter @Setter
     Album album;
 
     @OneToMany(mappedBy = "track")
