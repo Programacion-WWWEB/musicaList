@@ -15,16 +15,27 @@ public class Voto {
     private Long id;
 
     @Id
-    private Long trackId;
+    private Long track_id;
     
+
     @ManyToOne()
     @JoinColumn(name = "id" , insertable = false, updatable = false)
     UsuarioVotante usuarioVotante;
 
     
     @ManyToOne()
-    @JoinColumn(name = "trackId", insertable = false, updatable = false)
+    @JoinColumn(name = "track_id", insertable = false, updatable = false)
     Track track;
+
+    public Voto(){};
+
+    public Voto(Long trackId, Long userId, Track track, UsuarioVotante usuarioVotante) {
+        this.track_id = trackId;
+        this.id = userId;
+        this.track = track;
+        this.usuarioVotante = usuarioVotante;
+        
+    }
     
     
 }
