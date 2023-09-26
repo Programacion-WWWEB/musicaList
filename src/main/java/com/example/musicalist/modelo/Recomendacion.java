@@ -11,16 +11,25 @@ import javax.persistence.ManyToOne;
 public class Recomendacion {
     
     @Id
-    private Long albumId;
+    private Long album_id;
     @Id
-    private Long idgenero;
+    private Long id;
     
     
     @ManyToOne()
-    @JoinColumn(name = "idgenero", insertable = false, updatable = false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     Genero genero;
 
     @ManyToOne()
-    @JoinColumn(name = "albumId", insertable = false, updatable = false)
+    @JoinColumn(name = "album_id", insertable = false, updatable = false)
     Album album;
+
+    public Recomendacion(){};
+
+    public Recomendacion(Long albumId, Long idgenero, Album album, Genero genero) {
+        this.album_id = albumId;
+        this.id = idgenero;
+        this.album = album;
+        this.genero = genero;
+    }
 }

@@ -21,7 +21,7 @@ public class Genero {
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idgenero;
+    Long id;
     
     @Getter
     @Setter
