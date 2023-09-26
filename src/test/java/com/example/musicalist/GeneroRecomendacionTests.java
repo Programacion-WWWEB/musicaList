@@ -55,7 +55,7 @@ public class GeneroRecomendacionTests {
         genero.setNombre("Sunshine pop");
         generoRepository.save(genero);
 
-        Recomendacion recomendacion = new Recomendacion(album.getAlbum_id(), genero.getId(),album,genero);
+        Recomendacion recomendacion = new Recomendacion(album,genero);
         recomendacionRepository.save(recomendacion);
         List<Recomendacion> founRecomendacions = recomendacionRepository.findByGeneroAndAlbum(album.getName(),genero.getNombre());
         assertFalse((founRecomendacions).isEmpty());

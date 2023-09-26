@@ -26,9 +26,9 @@ public class Recomendacion {
 
     public Recomendacion(){};
 
-    public Recomendacion(Long albumId, Long idgenero, Album album, Genero genero) {
-        this.album_id = albumId;
-        this.id = idgenero;
+    public Recomendacion(Album album, Genero genero) {
+        this.album_id = album.getAlbum_id();
+        this.id = genero.getId();
         this.album = album;
         this.genero = genero;
     }
