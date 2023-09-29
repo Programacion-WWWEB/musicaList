@@ -13,5 +13,9 @@ public interface AlbumRepository extends JpaRepository<Album, Long>{
 
     @Query(value = "SELECT * FROM album WHERE name = ?1", nativeQuery = true)
     Optional<Album> findAlbumByName(String name);
+
+    @Query(value = "SELECT * FROM album", nativeQuery = true)
+    Optional<Album> loadAlbum();
+
      
 }

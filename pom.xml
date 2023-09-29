@@ -16,6 +16,12 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.host.url>http://app.inphotech.co:9000</sonar.host.url>
+    <sonar.login>usuario5</sonar.login>
+	<sonar.password>usuario5</sonar.password>
+    <sonar.projectKey>musicalist</sonar.projectKey> 
+    <sonar.projectName>musicalist</sonar.projectName>
+    <sonar.projectVersion>1.0</sonar.projectVersion>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -62,6 +68,13 @@
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.33</version>
+</dependency> 
+
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.5.0</version>
+    <scope>test</scope>
 </dependency>
 
  </dependencies>
@@ -80,7 +93,19 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.7.0.1746</version>
+			</plugin>
+<plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.7.0.1746</version>
+        </plugin>
 		</plugins>
+
+
 	</build>
 
 </project>
