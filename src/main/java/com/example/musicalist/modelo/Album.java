@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode(exclude = "albumId")
+@EqualsAndHashCode(exclude = "album_id")
 public class Album {
     
     @Id
@@ -37,13 +37,19 @@ public class Album {
     private String type;
     
     @Getter @Setter
-    private Date releaseDate;
+    private Date release_date;
     
     @Getter @Setter
-    private Float rymRating;
+    private Float rym_rating;
     
     @Getter @Setter
-    private String languague;
+    private String language;
+    
+    @Getter @Setter
+    private String genres;
+
+    @Getter @Setter
+    private String colorscheme;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")

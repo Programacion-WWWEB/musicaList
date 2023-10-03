@@ -14,18 +14,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode(exclude = {"idgenero"})
+@EqualsAndHashCode(exclude = {"id"})
 public class Genero {
 
     @Id
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     
     @Getter
     @Setter
-    private String nombre;
+    private String name;
 
 
     @OneToMany(mappedBy = "genero")
