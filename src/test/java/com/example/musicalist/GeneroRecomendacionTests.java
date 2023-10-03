@@ -43,21 +43,21 @@ public class GeneroRecomendacionTests {
         Date releaseDate = new Date();
         
         try {dateFormat.parse("1967-11-11"); 
-        album.setReleaseDate(releaseDate);}
+        album.setRelease_date(releaseDate);}
         catch(ParseException e){
 
             e.printStackTrace();
         }
-        album.setRymRating(4.5f);
-        album.setLanguague("Spanish");
+        album.setRym_rating(4.5f);
+        album.setLanguage("Spanish");
         albumRepository.save(album);
         Genero genero = new Genero();
-        genero.setNombre("Sunshine pop");
+        genero.setName("Sunshine pop");
         generoRepository.save(genero);
 
         Recomendacion recomendacion = new Recomendacion(album,genero);
         recomendacionRepository.save(recomendacion);
-        List<Recomendacion> founRecomendacions = recomendacionRepository.findByGeneroAndAlbum(album.getName(),genero.getNombre());
+        List<Recomendacion> founRecomendacions = recomendacionRepository.findByGeneroAndAlbum(album.getName(),genero.getName());
         assertFalse((founRecomendacions).isEmpty());
         
 

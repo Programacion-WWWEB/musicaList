@@ -50,13 +50,13 @@ public class VotoCancionTests {
         Date releaseDate = new Date();
         
         try {dateFormat.parse("1967-11-11"); 
-        album.setReleaseDate(releaseDate);}
+        album.setRelease_date(releaseDate);}
         catch(ParseException e){
 
             e.printStackTrace();
         }
-        album.setRymRating(4.5f);
-        album.setLanguague("Spanish");
+        album.setRym_rating(4.5f);
+        album.setLanguage("Spanish");
 
         
         Track track = new Track();

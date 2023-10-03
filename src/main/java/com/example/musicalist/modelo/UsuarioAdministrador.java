@@ -24,9 +24,5 @@ public class UsuarioAdministrador {
     
     @Getter @Setter
     private String contrasena;
-
-
-
-
     
 }
