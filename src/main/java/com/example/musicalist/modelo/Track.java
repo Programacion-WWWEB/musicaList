@@ -35,7 +35,7 @@ public class Track {
     @ManyToOne()
     @JoinColumn(name = "album_id")
     @Getter @Setter
-    Album album;
+    private Album album;
 
     @OneToMany(mappedBy = "track")
     private Set<Voto> votos = new HashSet<>();
