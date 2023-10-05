@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.musicalist.modelo.UsuarioVotante;
-import com.example.musicalist.modelo.UsuarioVotanteRepository;
+import com.example.musicalist.respositories.UsuarioVotanteRepository;
 
 @Controller
 @RequestMapping("/iniciarSesion")

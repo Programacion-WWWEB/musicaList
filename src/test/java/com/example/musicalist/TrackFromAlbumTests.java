@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.musicalist.modelo.Album;
-import com.example.musicalist.modelo.AlbumRepository;
 import com.example.musicalist.modelo.Track;
-import com.example.musicalist.modelo.TrackRepository;
+import com.example.musicalist.respositories.AlbumRepository;
+import com.example.musicalist.respositories.TrackRepository;
 
 @SpringBootTest
 @Transactional

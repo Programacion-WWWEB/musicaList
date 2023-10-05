@@ -13,11 +13,11 @@ public class Recomendacion {
     @Id
     private Long album_id;
     @Id
-    private Long id;
+    private Long genero_id;
     
     
     @ManyToOne()
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "genero_id", insertable = false, updatable = false)
     Genero genero;
 
     @ManyToOne()
@@ -28,7 +28,7 @@ public class Recomendacion {
 
     public Recomendacion(Album album, Genero genero) {
         this.album_id = album.getAlbum_id();
-        this.id = genero.getId();
+        this.genero_id = genero.getId();
         this.album = album;
         this.genero = genero;
     }
