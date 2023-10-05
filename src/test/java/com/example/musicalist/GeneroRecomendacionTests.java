@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.musicalist.modelo.Album;
-import com.example.musicalist.modelo.AlbumRepository;
 import com.example.musicalist.modelo.Genero;
-import com.example.musicalist.modelo.GeneroRepository;
 import com.example.musicalist.modelo.Recomendacion;
-import com.example.musicalist.modelo.RecomendacionRepository;
+import com.example.musicalist.respositories.AlbumRepository;
+import com.example.musicalist.respositories.GeneroRepository;
+import com.example.musicalist.respositories.RecomendacionRepository;
 @SpringBootTest
 @Transactional
 public class GeneroRecomendacionTests {

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.musicalist.modelo.UsuarioAdministrador;
-import com.example.musicalist.modelo.UsuarioAdministradorRepository;
+import com.example.musicalist.respositories.UsuarioAdministradorRepository;
 
 @SpringBootTest
 public class UsuarioAdministradorTests {

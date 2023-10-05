@@ -5,38 +5,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.musicalist.DTOs.UsuarioAdministradorDTO;
 import com.example.musicalist.modelo.UsuarioAdministrador;
-import com.example.musicalist.modelo.UsuarioAdministradorService;
+import com.example.musicalist.services.UsuarioAdministradorService;
 
 @RestController
 @RequestMapping("/UsuarioAdministrador")
 public class UsuarioAdministradorController {
     @Autowired
-    private UsuarioAdministradorService usuarioAdministradorService;
+    private UsuarioAdministradorService UsuarioAdministradorService;
     
-    @GetMapping
-    public List<UsuarioAdministrador> lista(){
-        return usuarioAdministradorService.listar();
+    @GetMapping("/Lista")
+    public List<UsuarioAdministradorDTO> lista(){
+        return UsuarioAdministradorService.listar();
     }
 
-    @PostMapping
-    public UsuarioAdministrador insertar(@RequestBody UsuarioAdministrador usuario){
-        return usuarioAdministradorService.insertar(usuario);
+    @GetMapping("/Buscar/{id}")
+    public UsuarioAdministradorDTO buscar(@PathVariable("id")Long id){
+        return UsuarioAdministradorService.buscar(id);
     }
 
-    @PutMapping
-    public UsuarioAdministrador actualizar(@RequestBody UsuarioAdministrador usuario){
-        return usuarioAdministradorService.actualizar(usuario);
+    @PostMapping("/Agregar")
+    public UsuarioAdministrador insertar(@RequestBody UsuarioAdministrador UsuarioAdministrador){
+        return UsuarioAdministradorService.insertar(UsuarioAdministrador);
     }
 
-    @DeleteMapping
-    public void eliminar(@RequestBody UsuarioAdministrador usuario){
-        usuarioAdministradorService.eliminar(usuario);
+    @PutMapping("/Actualizar")
+    public UsuarioAdministrador actualizar(@RequestBody UsuarioAdministrador UsuarioAdministrador){
+        return UsuarioAdministradorService.actualizar(UsuarioAdministrador);
+    }
+
+    @DeleteMapping("/Borrar")
+    public void eliminar(@RequestBody UsuarioAdministrador UsuarioAdministrador){
+        UsuarioAdministradorService.eliminar(UsuarioAdministrador);
+    }
+
+    @DeleteMapping("/Borrar/{id}")
+    public void eliminar(@PathVariable("id")Long id){
+        UsuarioAdministradorService.eliminar(id);
     }
 }
