@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +37,7 @@ public class Track {
     @ManyToOne()
     @JoinColumn(name = "album_id")
     @Getter @Setter
+    @JsonIgnore
     private Album album;
 
     @OneToMany(mappedBy = "track")

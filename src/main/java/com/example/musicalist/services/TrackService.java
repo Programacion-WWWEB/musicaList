@@ -1,16 +1,18 @@
 package com.example.musicalist.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.musicalist.DTOs.TrackDTO;
+import com.example.musicalist.modelo.Album;
 import com.example.musicalist.modelo.Track;
+import com.example.musicalist.respositories.AlbumRepository;
 import com.example.musicalist.respositories.TrackRepository;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TrackService{
@@ -19,11 +21,30 @@ public class TrackService{
     private TrackRepository trackRepository;
 
     @Autowired
+    private AlbumRepository albumRepository;
+
+    @Autowired
     ModelMapper modelMapper;
 
-    public Track insertar(Track Track){
-        return trackRepository.save(Track);
-    };
+    public Track insertar(TrackDTO trackDTO) {
+        
+        Long albumId = trackDTO.getAlbum().getAlbum_id();
+        
+
+        Optional<Album> albumOptional = albumRepository.findById(albumId);
+
+        if (albumOptional.isPresent()) {
+        
+            Album album = albumOptional.get();
+            Track track = modelMapper.map(trackDTO, Track.class);
+            track.setAlbum(album);
+            return trackRepository.save(track);
+        } else {
+        
+            return null;
+        }
+    }
+
 
     public Track actualizar(Track Track){
         return trackRepository.save(Track);

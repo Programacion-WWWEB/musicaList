@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,10 +52,13 @@ public class Album {
 
     @Getter @Setter
     private String colorscheme;
+    
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")
+    
     @Getter @Setter
+    @JsonIgnore
     private List<Track> trackListing = new ArrayList<>(); 
 
     @OneToMany(mappedBy = "album")
