@@ -79,7 +79,7 @@ public class VotoCancionTests {
         Voto voto = new Voto(track,user);
         votoRepository.save(voto);
         
-        List<Object[]> votosHechos =  votoRepository.findUserVoto(track.getTitle(), user.getNombre());
+        List<Voto> votosHechos =  votoRepository.findUserVoto(track.getTitle(),user.getNombre());
         
         assertFalse(votosHechos.isEmpty());
 
