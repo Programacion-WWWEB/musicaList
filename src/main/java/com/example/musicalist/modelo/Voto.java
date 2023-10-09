@@ -6,6 +6,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @IdClass(VotoId.class)
@@ -20,10 +22,12 @@ public class Voto {
 
     @ManyToOne()
     @JoinColumn(name = "id" , insertable = false, updatable = false)
+    @JsonIgnore
     UsuarioVotante usuarioVotante;
 
     
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "track_id", insertable = false, updatable = false)
     Track track;
 

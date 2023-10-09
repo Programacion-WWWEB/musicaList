@@ -1,23 +1,26 @@
 package com.example.musicalist.DTOs;
 
-import java.sql.Time;
-
 import com.example.musicalist.modelo.Album;
+import com.example.musicalist.modelo.Genero;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class TrackDTO {
-    @Getter @Setter
-    private Long track_id;
-     
-    @Getter @Setter
-    private String title;
+public class RecomendacionDTO {
 
     @Getter @Setter
-    private Time duration;
+    private Long album_id;
+    
+    @Getter @Setter
+    private Long genero_id;
 
-     @Getter @Setter
+    @Getter @Setter
+    private Genero genero;
+    
+    @Getter @Setter
     private Album album;
 
+
+
+    
 }

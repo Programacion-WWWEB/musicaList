@@ -6,6 +6,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @IdClass(RecomendacionId.class)
 public class Recomendacion {
@@ -17,10 +19,12 @@ public class Recomendacion {
     
     
     @ManyToOne()
-    @JoinColumn(name = "genero_id", insertable = false, updatable = false)
+    @JsonIgnore
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     Genero genero;
 
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "album_id", insertable = false, updatable = false)
     Album album;
 

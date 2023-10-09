@@ -2,6 +2,8 @@ package com.example.musicalist.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,40 +23,52 @@ import com.example.musicalist.services.TrackService;
 @RequestMapping("/Track")
 public class TrackController {
     @Autowired
-    private TrackService TrackService;
+    private TrackService trackService;
+    @Autowired
+    private ModelMapper modelMapper;
     
     @GetMapping("/Lista")
     public List<TrackDTO> lista(){
-        return TrackService.listar();
+        return trackService.listar()
     }
 
     @GetMapping("/Lista/{id}")
     public List<TrackDTO> lista(@PathVariable("id")Long id){
-        return TrackService.listar(id);
+        return trackService.listar(id);
+
     }
 
     @GetMapping("/Buscar/{id}")
     public TrackDTO buscar(@PathVariable("id")Long id){
-        return TrackService.buscar(id);
+        return trackService.buscar(id);
     }
 
     @PostMapping("/Agregar")
-    public Track insertar(@RequestBody Track Track){
-        return TrackService.insertar(Track);
+    public Track insertar(@RequestBody TrackDTO trackDTO){
+        Track insertedTrack = trackService.insertar(trackDTO);
+
+        return modelMapper.map(insertedTrack, Track.class);
     }
+
+   
 
     @PutMapping("/Actualizar")
     public Track actualizar(@RequestBody Track Track){
-        return TrackService.actualizar(Track);
+
+        return trackService.actualizar(Track);
     }
 
     @DeleteMapping("/Borrar")
     public void eliminar(@RequestBody Track Track){
-        TrackService.eliminar(Track);
+
+        trackService.eliminar(Track);
+
     }
 
     @DeleteMapping("/Borrar/{id}")
     public void eliminar(@PathVariable("id")Long id){
-        TrackService.eliminar(id);
+
+        trackService.eliminar(id);
+
     }
 }
