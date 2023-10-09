@@ -57,7 +57,7 @@ public class AlbumService{
         for (Album album : albums) {
             AlbumDTO albumDTO = modelMapper.map(album, AlbumDTO.class);
 
-            // Fetch and map the track listing for the album
+            
             List<Track> tracks = (List<Track>) trackRepository.findByAlbum(album.getAlbum_id());
             List<TrackDTO> trackDTOs = new ArrayList<>();
 

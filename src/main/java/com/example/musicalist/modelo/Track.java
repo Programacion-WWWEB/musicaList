@@ -40,6 +40,7 @@ public class Track {
     @JsonIgnore
     private Album album;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "track")
     private Set<Voto> votos = new HashSet<>();
 
