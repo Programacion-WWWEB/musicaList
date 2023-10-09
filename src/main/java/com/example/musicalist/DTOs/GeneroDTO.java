@@ -10,6 +10,6 @@ public class GeneroDTO {
     private Long id;
     
     @Getter @Setter
-    private String name;
+    private String nombre;
     
 }

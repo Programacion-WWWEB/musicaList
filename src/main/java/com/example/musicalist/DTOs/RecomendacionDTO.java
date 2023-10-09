@@ -12,13 +12,25 @@ public class RecomendacionDTO {
     private Long album_id;
     
     @Getter @Setter
-    private Long genero_id;
+    private Long id;
 
     @Getter @Setter
     private Genero genero;
     
     @Getter @Setter
-    private Album album;
+    private Album album = new Album();
+
+    public RecomendacionDTO(){
+
+        Genero genero = new Genero();
+        Album album = new Album();
+    }
+
+    public RecomendacionDTO(Genero genero, Album album){
+
+        this.genero = genero;
+        this.album = album;
+    }
 
 
 

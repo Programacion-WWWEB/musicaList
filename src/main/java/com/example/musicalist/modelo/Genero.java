@@ -25,7 +25,7 @@ public class Genero {
     
     @Getter
     @Setter
-    private String name;
+    private String nombre;
 
 
     @OneToMany(mappedBy = "genero")

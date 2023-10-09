@@ -52,12 +52,12 @@ public class GeneroRecomendacionTests {
         album.setLanguage("Spanish");
         albumRepository.save(album);
         Genero genero = new Genero();
-        genero.setName("Sunshine pop");
+        genero.setNombre("Sunshine pop");
         generoRepository.save(genero);
 
         Recomendacion recomendacion = new Recomendacion(album,genero);
         recomendacionRepository.save(recomendacion);
-        List<Recomendacion> founRecomendacions = recomendacionRepository.findByGeneroAndAlbum(album.getName(),genero.getName());
+        List<Recomendacion> founRecomendacions = recomendacionRepository.findByGeneroAndAlbum(album.getName(),genero.getNombre());
         assertFalse((founRecomendacions).isEmpty());
         
 
