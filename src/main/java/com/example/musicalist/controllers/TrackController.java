@@ -29,7 +29,7 @@ public class TrackController {
     
     @GetMapping("/Lista")
     public List<TrackDTO> lista(){
-        return trackService.listar()
+        return trackService.listar();
     }
 
     @GetMapping("/Lista/{id}")
