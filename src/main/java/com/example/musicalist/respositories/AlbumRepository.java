@@ -16,7 +16,5 @@ public interface AlbumRepository extends JpaRepository<Album, Long>{
 
     @Query(value = "SELECT * FROM album", nativeQuery = true)
     Optional<Album> loadAlbum();
-
-
      
 }

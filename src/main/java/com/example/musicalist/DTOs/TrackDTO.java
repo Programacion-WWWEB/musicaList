@@ -20,5 +20,4 @@ public class TrackDTO {
      @Getter @Setter
     private Album album;
 
-    
 }

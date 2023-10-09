@@ -3,6 +3,7 @@ package com.example.musicalist.controllers;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +29,13 @@ public class TrackController {
     
     @GetMapping("/Lista")
     public List<TrackDTO> lista(){
-        return trackService.listar();
+        return trackService.listar()
     }
 
     @GetMapping("/Lista/{id}")
     public List<TrackDTO> lista(@PathVariable("id")Long id){
         return trackService.listar(id);
+
     }
 
     @GetMapping("/Buscar/{id}")
@@ -48,18 +50,25 @@ public class TrackController {
         return modelMapper.map(insertedTrack, Track.class);
     }
 
+   
+
     @PutMapping("/Actualizar")
     public Track actualizar(@RequestBody Track Track){
+
         return trackService.actualizar(Track);
     }
 
     @DeleteMapping("/Borrar")
     public void eliminar(@RequestBody Track Track){
+
         trackService.eliminar(Track);
+
     }
 
     @DeleteMapping("/Borrar/{id}")
     public void eliminar(@PathVariable("id")Long id){
+
         trackService.eliminar(id);
+
     }
 }

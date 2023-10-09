@@ -40,7 +40,7 @@ public class Album {
     
     @Getter @Setter
     private Date release_date;
-    
+
     @Getter @Setter
     private Float rym_rating;
     
@@ -52,7 +52,6 @@ public class Album {
 
     @Getter @Setter
     private String colorscheme;
-    
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")
