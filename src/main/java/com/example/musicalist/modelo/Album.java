@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,7 +61,7 @@ public class Album {
     @JsonIgnore
     private List<Track> trackListing = new ArrayList<>(); 
 
-    @OneToMany(mappedBy = "album")
+    @OneToMany(mappedBy = "album", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Set<Recomendacion> recomendar = new HashSet<>();
 
     

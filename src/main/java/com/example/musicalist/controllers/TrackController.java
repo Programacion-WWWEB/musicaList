@@ -3,8 +3,8 @@ package com.example.musicalist.controllers;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +21,7 @@ import com.example.musicalist.services.TrackService;
 
 @RestController
 @RequestMapping("/Track")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class TrackController {
     @Autowired
     private TrackService trackService;

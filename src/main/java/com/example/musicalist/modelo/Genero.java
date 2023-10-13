@@ -3,7 +3,9 @@ package com.example.musicalist.modelo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +30,7 @@ public class Genero {
     private String nombre;
 
 
-    @OneToMany(mappedBy = "genero")
+    @OneToMany(mappedBy = "genero", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Set<Recomendacion> recomendar = new HashSet<>();
 
 

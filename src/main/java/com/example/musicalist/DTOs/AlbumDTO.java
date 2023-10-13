@@ -1,11 +1,11 @@
 package com.example.musicalist.DTOs;
 
 import java.util.Date;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-
-
+import com.example.musicalist.modelo.Recomendacion;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +41,8 @@ public class AlbumDTO {
 
     @Getter @Setter
     private List<TrackDTO> trackListing;
-
+    
+    @Getter @Setter
+    private Set<Recomendacion> recomendar = new HashSet<>();
     
 }
