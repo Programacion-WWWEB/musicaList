@@ -19,36 +19,36 @@ import com.example.musicalist.services.UsuarioVotanteService;
 
 @RestController
 @RequestMapping("/UsuarioVotante")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+
 public class UsuarioVotanteController {
     @Autowired
     private UsuarioVotanteService UsuarioVotanteService;
-    
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Lista")
     public List<UsuarioVotanteDTO> lista(){
         return UsuarioVotanteService.listar();
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Buscar/{id}")
     public UsuarioVotanteDTO buscar(@PathVariable("id")Long id){
         return UsuarioVotanteService.buscar(id);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PostMapping("/Agregar")
     public UsuarioVotante insertar(@RequestBody UsuarioVotante UsuarioVotante){
         return UsuarioVotanteService.insertar(UsuarioVotante);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PutMapping("/Actualizar")
     public UsuarioVotante actualizar(@RequestBody UsuarioVotante UsuarioVotante){
         return UsuarioVotanteService.actualizar(UsuarioVotante);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @DeleteMapping("/Borrar")
     public void eliminar(@RequestBody UsuarioVotante UsuarioVotante){
         UsuarioVotanteService.eliminar(UsuarioVotante);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @DeleteMapping("/Borrar/{id}")
     public void eliminar(@PathVariable("id")Long id){
         UsuarioVotanteService.eliminar(id);
