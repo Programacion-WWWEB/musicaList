@@ -12,7 +12,7 @@ import lombok.Setter;
 public class RecomendacionId implements Serializable{
     
     @Getter @Setter
-    private Long genero_id;
+    private Long id;
 
     @Getter @Setter
     private Long album_id;
@@ -22,13 +22,13 @@ public class RecomendacionId implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecomendacionId recomendacionId = (RecomendacionId) o;
-        return Objects.equals(genero_id, recomendacionId.genero_id) &&
+        return Objects.equals(id, recomendacionId.id) &&
                Objects.equals(album_id, recomendacionId.album_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(genero_id, album_id);
+        return Objects.hash(id, album_id);
     }
     
 }

@@ -22,37 +22,38 @@ public class VotoControllerTest {
     @Test
     public void testVotoAgregar() throws Exception{
 
-    String jsonPayload = "{\n" + 
-            "\"id\": 1\n" +// 
-            "\"track_id\": 10\n" +  
-            "\"usuario_votante\":{\n" + //
-            " \"nombre\": \"usuario\",\n" + //
-            " \"nombrePerfil\": \"usuarioPerfil\",\n" + //
-            " \"contrasena\": \"contrasena\",\n" + //
-            " \"correo\": \"frde@ase\"\n" + //
-            "},\n" + //
-            "\n" + //
-            "\"track\":{\n" + //
-            "\n" + //
-            "    \"title\": \"Cristaux liquides\",\n" + //
-            "\n" + //
-            "    \"album\": {\n" + //
-            "        \"album_id\": 1,\n" + //
-            "        \"name\": \"Palais d'argile\"\n" + //
-            "\n" + //
-            "    }\n" + //
-            "\n" + //
-            "\n" + //
-            "}\n" + //
-            "}";
+        String jsonPayload = "{\n" +
+        "\"id\": 1,\n" + 
+        "\"track_id\": 10,\n" +  
+        "\"usuario_votante\":{\n" +
+        " \"nombre\": \"usuario\",\n" +
+        " \"nombrePerfil\": \"usuarioPerfil\",\n" +
+        " \"contrasena\": \"contrasena\",\n" +
+        " \"correo\": \"frde@ase\"\n" +
+        "},\n" +
+        "\"track\":{\n" +
+        "    \"title\": \"Cristaux liquides\",\n" +
+        "    \"album\": {\n" +
+        "        \"album_id\": 1,\n" +
+        "        \"name\": \"Palais d'argile\"\n" +
+        "    }\n" +
+        "}\n" +
+        "}";
 
-            mockMvc.perform(MockMvcRequestBuilders
-                .post("/Voto/Agregar")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonPayload)) // Set the JSON payload
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-
+        mockMvc.perform(MockMvcRequestBuilders
+            .post("/Voto/Agregar")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(jsonPayload)) // Set the JSON payload
+            .andExpect(MockMvcResultMatchers.status().isOk());
     }
+
+    @Test
+    public void testVotoLista() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/Voto/Lista")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
     
 }

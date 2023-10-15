@@ -34,6 +34,81 @@ public class TrackControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    @Test
+    public void testAgregar() throws Exception {
+        // Define the JSON payload
+        String jsonPayload = "{\n" +
+                "    \"title\": \"Un monde nouveau\",\n" +
+                "    \"album\": {\n" +
+                "        \"album_id\": 1,\n" +
+                "        \"name\": \"Palais d'argile\"\n" +
+                "    }\n" +
+                "}";
+    
+        // Perform the POST request with the JSON payload
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/Track/Agregar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonPayload)) // Set the JSON payload
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testActualizar() throws Exception {
+        // Define the JSON payload
+        String jsonPayload = "{\n" +
+                "    \"title\": \"Un monde nouveau\",\n" +
+                "    \"album\": {\n" +
+                "        \"album_id\": 1,\n" +
+                "        \"name\": \"Palais d'argile\"\n" +
+                "    }\n" +
+                "}";
+    
+        // Perform the POST request with the JSON payload
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/Track/Agregar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonPayload)) // Set the JSON payload
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testEliminar() throws Exception {
+        // Define the JSON payload
+        String jsonPayload = "{\n" +
+                "    \"title\": \"Un monde nouveau\",\n" +
+                "    \"album\": {\n" +
+                "        \"album_id\": 1,\n" +
+                "        \"name\": \"Palais d'argile\"\n" +
+                "    }\n" +
+                "}";
+    
+        // Perform the POST request with the JSON payload
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/Track/Agregar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonPayload)) // Set the JSON payload
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testListar() throws Exception {
+        // Define the JSON payload
+        String jsonPayload = "{\n" +
+                "    \"title\": \"Un monde nouveau\",\n" +
+                "    \"album\": {\n" +
+                "        \"album_id\": 1,\n" +
+                "        \"name\": \"Palais d'argile\"\n" +
+                "    }\n" +
+                "}";
+    
+        // Perform the POST request with the JSON payload
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/Track/Agregar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonPayload)) // Set the JSON payload
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
 
     
 }

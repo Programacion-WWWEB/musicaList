@@ -15,7 +15,7 @@ public class Recomendacion {
     @Id
     private Long album_id;
     @Id
-    private Long genero_id;
+    private Long id;
     
     
     @ManyToOne()
@@ -32,7 +32,7 @@ public class Recomendacion {
 
     public Recomendacion(Album album, Genero genero) {
         this.album_id = album.getAlbum_id();
-        this.genero_id = genero.getId();
+        this.id = genero.getId();
         this.album = album;
         this.genero = genero;
     }
