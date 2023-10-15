@@ -21,11 +21,10 @@ public class GeneroControllerTest {
 
     @Test
     public void testAgregar() throws Exception {
-        String jsonPayload = "{\n" + 
-            "\"id\": 1,\n" + 
-            "\"nombre\": \"Rock\",\n" + 
-            "\"descripcion\": \"Genero musical que se caracteriza por la utilizacion de guitarras electricas, bateria y bajo\"\n" + 
-            "}";
+        String jsonPayload = "{\n" +
+        "\"id\": 1,\n" +
+        "\"nombre\": \"Rock\"\n" +
+        "}";
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/Genero/Agregar")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -35,11 +34,10 @@ public class GeneroControllerTest {
 
     @Test
     public void testActualizar() throws Exception {
-        String jsonPayload = "{\n" + 
-            "\"id\": 1,\n" + 
-            "\"nombre\": \"Rock\",\n" + 
-            "\"descripcion\": \"Genero musical que se caracteriza por la utilizacion de guitarras electricas, bateria y bajo\"\n" + 
-            "}";
+        String jsonPayload = "{\n" +
+        "\"id\": 1,\n" +
+        "\"nombre\": \"Rock\"\n" +
+        "}";
         mockMvc.perform(MockMvcRequestBuilders
                 .put("/Genero/Actualizar")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -77,11 +75,10 @@ public class GeneroControllerTest {
     @Test
     @Transactional
     public void testEliminarGenero() throws Exception {
-        String jsonPayload = "{\n" + 
-            "\"id\": 1,\n" + 
-            "\"nombre\": \"Rock\",\n" + 
-            "\"descripcion\": \"Genero musical que se caracteriza por la utilizacion de guitarras electricas, bateria y bajo\"\n" + 
-            "}";
+        String jsonPayload = "{\n" +
+        "\"id\": 1,\n" +
+        "\"nombre\": \"Rock\"\n" +
+        "}";
         mockMvc.perform(MockMvcRequestBuilders
                 .delete("/Genero/Borrar")
                 .contentType(MediaType.APPLICATION_JSON)
