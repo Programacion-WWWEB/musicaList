@@ -33,7 +33,7 @@ public class UsuarioVotanteController {
     public UsuarioVotanteDTO buscar(@PathVariable("id")Long id){
         return UsuarioVotanteService.buscar(id);
     }
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    @CrossOrigin(origins = {"http://localhost:4200/registrar-usuario", "http://localhost:4200/home", "http://localhost:4200"}, allowedHeaders = "*")
     @PostMapping("/Agregar")
     public UsuarioVotante insertar(@RequestBody UsuarioVotante UsuarioVotante){
         return UsuarioVotanteService.insertar(UsuarioVotante);
