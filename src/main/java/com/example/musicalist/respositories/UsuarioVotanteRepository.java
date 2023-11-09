@@ -15,5 +15,9 @@ public interface UsuarioVotanteRepository extends JpaRepository<UsuarioVotante,L
 
     @Query("SELECT u FROM UsuarioVotante u WHERE u.nombrePerfil = ?1")
     Optional<UsuarioVotante> findUserByNombrePerfil(String nombrePerfil);
+
+    @Query("SELECT u FROM UsuarioVotante u WHERE u.nombrePerfil = ?1 AND u.contrasena = ?2")
+Optional<UsuarioVotante> findUserByNombrePerfilAndContrasena(String nombrePerfil, String contrasena);
+
     
 }
