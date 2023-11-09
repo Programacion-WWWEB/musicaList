@@ -1,8 +1,11 @@
 package com.example.musicalist.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.musicalist.DTOs.UsuarioVotanteDTO;
 import com.example.musicalist.modelo.UsuarioVotante;
+import com.example.musicalist.respositories.UsuarioVotanteRepository;
 import com.example.musicalist.services.UsuarioVotanteService;
 
 @RestController
@@ -23,6 +27,9 @@ import com.example.musicalist.services.UsuarioVotanteService;
 public class UsuarioVotanteController {
     @Autowired
     private UsuarioVotanteService UsuarioVotanteService;
+
+    @Autowired
+    private UsuarioVotanteRepository usuarioVotanteRepository;
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Lista")
     public List<UsuarioVotanteDTO> lista(){
@@ -35,9 +42,27 @@ public class UsuarioVotanteController {
     }
     @CrossOrigin(origins = {"http://localhost:4200/registrar-usuario", "http://localhost:4200/home", "http://localhost:4200"}, allowedHeaders = "*")
     @PostMapping("/Agregar")
-    public UsuarioVotante insertar(@RequestBody UsuarioVotante UsuarioVotante){
-        return UsuarioVotanteService.insertar(UsuarioVotante);
+    public ResponseEntity<?> insertar(@RequestBody UsuarioVotante usuarioVotante){
+        Optional<UsuarioVotante> existingUser = usuarioVotanteRepository
+        .findUserByNombrePerfilAndContrasena(usuarioVotante.getNombrePerfil(), usuarioVotante.getContrasena());
+
+        if (existingUser.isPresent()) {
+        // User with the same credentials already exists, return an error response
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body("User with the same credentials already exists");
     }
+    UsuarioVotanteService.insertar(usuarioVotante);
+
+    UsuarioVotanteDTO usuarioVotanteDTO = new UsuarioVotanteDTO();
+
+    usuarioVotanteDTO.setCorreo(usuarioVotante.getCorreo());
+    usuarioVotanteDTO.setNombre(usuarioVotante.getNombre());
+    usuarioVotanteDTO.setNombrePerfil(usuarioVotante.getNombrePerfil());
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(usuarioVotanteDTO);
+}
+
+
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PutMapping("/Actualizar")
     public UsuarioVotante actualizar(@RequestBody UsuarioVotante UsuarioVotante){
