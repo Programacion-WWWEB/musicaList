@@ -1,20 +1,16 @@
 package com.example.musicalist.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.musicalist.DTOs.GeneroDTO;
-import com.example.musicalist.DTOs.GeneroDTO;
 import com.example.musicalist.modelo.Genero;
-import com.example.musicalist.modelo.Genero;
-import com.example.musicalist.respositories.AlbumRepository;
 import com.example.musicalist.respositories.GeneroRepository;
-import com.example.musicalist.respositories.GeneroRepository;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GeneroService{
