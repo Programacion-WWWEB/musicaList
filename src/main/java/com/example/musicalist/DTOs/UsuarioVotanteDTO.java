@@ -12,6 +12,9 @@ public class UsuarioVotanteDTO {
 
     @Getter @Setter 
     private String correo;
+
+    @Getter @Setter 
+    private String contrasena;
     
     @Getter @Setter
     private String nombrePerfil;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.musicalist.DTOs.UsuarioVotanteDTO;
 import com.example.musicalist.modelo.UsuarioVotante;
 import com.example.musicalist.respositories.UsuarioVotanteRepository;
 
@@ -27,7 +28,7 @@ public class InicioSesionController {
     }
 
     @PostMapping
-    public String iniciarSesion(@ModelAttribute UsuarioVotante usuarioVotante, Model model){
+    public String iniciarSesion(@ModelAttribute UsuarioVotanteDTO usuarioVotante, Model model){
 
 
         String nombrePerfil = usuarioVotante.getNombrePerfil();
