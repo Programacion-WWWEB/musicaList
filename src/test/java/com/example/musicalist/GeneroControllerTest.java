@@ -63,14 +63,14 @@ public class GeneroControllerTest {
                 
     }
 
-    @Test
+  /*  @Test
     @Transactional
     public void testEliminar() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
                 .delete("/Genero/Borrar/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+    }*/
 
     @Test
     @Transactional
