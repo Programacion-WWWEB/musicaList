@@ -34,22 +34,22 @@ public class AlbumService{
             trackRepository.save(track2);
         }
         return albumRepository.save(album);
-    };
+    }
 
     public Album actualizar(Album album){
         return albumRepository.save(album);
-    };
+    }
 
     public AlbumDTO buscar(Long id){
-        Optional<Album>AlbumOptional =  albumRepository.findById(id);
-		Album Album = null;
-		AlbumDTO AlbumDTO = null;
-		if( AlbumOptional.isPresent() ) {
-			Album = AlbumOptional.get();
-			AlbumDTO = modelMapper.map(Album, AlbumDTO.class);
+        Optional<Album> albumOptional =  albumRepository.findById(id);
+		Album album = null;
+		AlbumDTO albumDTO = null;
+		if( albumOptional.isPresent() ) {
+			album = albumOptional.get();
+			albumDTO = modelMapper.map(album, AlbumDTO.class);
 		}
-		return AlbumDTO;
-    };
+		return albumDTO;
+    }
 
     public List<AlbumDTO> listar() {
         Iterable<Album> albums = albumRepository.findAll();
@@ -76,10 +76,10 @@ public class AlbumService{
 
     public void eliminar(Album album){
         albumRepository.delete(album);
-    };
+    }
 
     public void eliminar(Long id){
         albumRepository.deleteById(id);
-    };
+    }
 
 }

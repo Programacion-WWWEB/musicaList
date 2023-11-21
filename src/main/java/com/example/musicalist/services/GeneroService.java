@@ -23,39 +23,39 @@ public class GeneroService{
 
     public Genero insertar(Genero usuario){
         return generoRepository.save(usuario);
-    };
+    }
 
     public Genero actualizar(Genero usuario){
         return generoRepository.save(usuario);
-    };
+    }
 
     public List<GeneroDTO> listar(){
-        Iterable<Genero> Generos = generoRepository.findAll();
-		List<GeneroDTO> GeneroDTO = new ArrayList<GeneroDTO>();
+        Iterable<Genero> generos = generoRepository.findAll();
+		List<GeneroDTO> generoDTO = new ArrayList<GeneroDTO>();
 		
-		for (Genero Genero : Generos) {
-			GeneroDTO.add(modelMapper.map(Genero, GeneroDTO.class) );
+		for (Genero genero : generos) {
+			generoDTO.add(modelMapper.map(genero, GeneroDTO.class) );
 		}
 		
-        return GeneroDTO;
+        return generoDTO;
     }
 
     public GeneroDTO buscar(Long id){
-        Optional<Genero>GeneroOptional =  generoRepository.findById(id);
-		Genero Genero = null;
-		GeneroDTO GeneroDTO = null;
-		if( GeneroOptional.isPresent() ) {
-			Genero = GeneroOptional.get();
-			GeneroDTO = modelMapper.map(Genero, GeneroDTO.class);
+        Optional<Genero> generoOptional =  generoRepository.findById(id);
+		Genero genero = null;
+		GeneroDTO generoDTO = null;
+		if( generoOptional.isPresent() ) {
+			genero = generoOptional.get();
+			generoDTO = modelMapper.map(genero, GeneroDTO.class);
 		}
-		return GeneroDTO;
-    };
+		return generoDTO;
+    }
 
     public void eliminar(Genero usuario){
         generoRepository.delete(usuario);
-    };
+    }
 
     public void eliminar(Long id){
         generoRepository.deleteById(id);
-    };
+    }
 }

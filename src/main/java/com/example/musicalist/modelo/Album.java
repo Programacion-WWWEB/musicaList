@@ -61,7 +61,7 @@ public class Album {
     @JsonIgnore
     private List<Track> trackListing = new ArrayList<>(); 
 
-    @OneToMany(mappedBy = "album", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "album", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private Set<Recomendacion> recomendar = new HashSet<>();
 
     

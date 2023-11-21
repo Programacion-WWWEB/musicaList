@@ -1,5 +1,9 @@
 package com.example.musicalist.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,56 +12,52 @@ import com.example.musicalist.DTOs.UsuarioVotanteDTO;
 import com.example.musicalist.modelo.UsuarioVotante;
 import com.example.musicalist.respositories.UsuarioVotanteRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class UsuarioVotanteService{
     
     @Autowired
-    private UsuarioVotanteRepository UsuarioVotanteRepository;
+    private UsuarioVotanteRepository usuarioVotanteRepository;
 
     @Autowired
     ModelMapper modelMapper;
 
-    public UsuarioVotante insertar(UsuarioVotante UsuarioVotante){
-        return UsuarioVotanteRepository.save(UsuarioVotante);
-    };
+    public UsuarioVotante insertar(UsuarioVotante usuarioVotante){
+        return usuarioVotanteRepository.save(usuarioVotante);
+    }
 
-    public UsuarioVotante actualizar(UsuarioVotante UsuarioVotante){
-        return UsuarioVotanteRepository.save(UsuarioVotante);
-    };
+    public UsuarioVotante actualizar(UsuarioVotante usuarioVotante){
+        return usuarioVotanteRepository.save(usuarioVotante);
+    }
 
     public UsuarioVotanteDTO buscar(Long id){
-        Optional<UsuarioVotante>UsuarioVotanteOptional =  UsuarioVotanteRepository.findById(id);
-		UsuarioVotante UsuarioVotante = null;
-		UsuarioVotanteDTO UsuarioVotanteDTO = null;
-		if( UsuarioVotanteOptional.isPresent() ) {
-			UsuarioVotante = UsuarioVotanteOptional.get();
-			UsuarioVotanteDTO = modelMapper.map(UsuarioVotante, UsuarioVotanteDTO.class);
+        Optional<UsuarioVotante>usuarioVotanteOptional =  usuarioVotanteRepository.findById(id);
+		UsuarioVotante usuarioVotante = null;
+		UsuarioVotanteDTO usuarioVotanteDTO = null;
+		if( usuarioVotanteOptional.isPresent() ) {
+			usuarioVotante = usuarioVotanteOptional.get();
+			usuarioVotanteDTO = modelMapper.map(usuarioVotante, UsuarioVotanteDTO.class);
 		}
-		return UsuarioVotanteDTO;
-    };
+		return usuarioVotanteDTO;
+    }
 
     public List<UsuarioVotanteDTO> listar(){
-        Iterable<UsuarioVotante> UsuarioVotantes = UsuarioVotanteRepository.findAll();
-		List<UsuarioVotanteDTO> UsuarioVotanteDTO = new ArrayList<UsuarioVotanteDTO>();
+        Iterable<UsuarioVotante> usuarioVotantes = usuarioVotanteRepository.findAll();
+		List<UsuarioVotanteDTO> usuarioVotanteDTO = new ArrayList<UsuarioVotanteDTO>();
 		
-		for (UsuarioVotante UsuarioVotante : UsuarioVotantes) {
-			UsuarioVotanteDTO.add(modelMapper.map(UsuarioVotante, UsuarioVotanteDTO.class) );
+		for (UsuarioVotante usuarioVotante : usuarioVotantes) {
+			usuarioVotanteDTO.add(modelMapper.map(usuarioVotante, UsuarioVotanteDTO.class) );
 		}
 		
-        return UsuarioVotanteDTO;
+        return usuarioVotanteDTO;
         
-    };
+    }
 
-    public void eliminar(UsuarioVotante UsuarioVotante){
-        UsuarioVotanteRepository.delete(UsuarioVotante);
-    };
+    public void eliminar(UsuarioVotante usuarioVotante){
+        usuarioVotanteRepository.delete(usuarioVotante);
+    }
 
     public void eliminar(Long id){
-        UsuarioVotanteRepository.deleteById(id);
-    };
+        usuarioVotanteRepository.deleteById(id);
+    }
 
 }

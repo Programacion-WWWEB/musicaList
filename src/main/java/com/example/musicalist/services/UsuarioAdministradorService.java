@@ -1,5 +1,9 @@
 package com.example.musicalist.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,56 +12,52 @@ import com.example.musicalist.DTOs.UsuarioAdministradorDTO;
 import com.example.musicalist.modelo.UsuarioAdministrador;
 import com.example.musicalist.respositories.UsuarioAdministradorRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class UsuarioAdministradorService{
     
     @Autowired
-    private UsuarioAdministradorRepository UsuarioAdministradorRepository;
+    private UsuarioAdministradorRepository usuarioAdministradorRepository;
 
     @Autowired
     ModelMapper modelMapper;
 
     public UsuarioAdministrador insertar(UsuarioAdministrador UsuarioAdministrador){
-        return UsuarioAdministradorRepository.save(UsuarioAdministrador);
-    };
+        return usuarioAdministradorRepository.save(UsuarioAdministrador);
+    }
 
     public UsuarioAdministrador actualizar(UsuarioAdministrador UsuarioAdministrador){
-        return UsuarioAdministradorRepository.save(UsuarioAdministrador);
-    };
+        return usuarioAdministradorRepository.save(UsuarioAdministrador);
+    }
 
     public UsuarioAdministradorDTO buscar(Long id){
-        Optional<UsuarioAdministrador>UsuarioAdministradorOptional =  UsuarioAdministradorRepository.findById(id);
-		UsuarioAdministrador UsuarioAdministrador = null;
-		UsuarioAdministradorDTO UsuarioAdministradorDTO = null;
-		if( UsuarioAdministradorOptional.isPresent() ) {
-			UsuarioAdministrador = UsuarioAdministradorOptional.get();
-			UsuarioAdministradorDTO = modelMapper.map(UsuarioAdministrador, UsuarioAdministradorDTO.class);
+        Optional<UsuarioAdministrador>usuarioAdministradorOptional =  usuarioAdministradorRepository.findById(id);
+		UsuarioAdministrador usuarioAdministrador = null;
+		UsuarioAdministradorDTO usuarioAdministradorDTO = null;
+		if( usuarioAdministradorOptional.isPresent() ) {
+			usuarioAdministrador = usuarioAdministradorOptional.get();
+			usuarioAdministradorDTO = modelMapper.map(usuarioAdministrador, UsuarioAdministradorDTO.class);
 		}
-		return UsuarioAdministradorDTO;
-    };
+		return usuarioAdministradorDTO;
+    }
 
     public List<UsuarioAdministradorDTO> listar(){
-        Iterable<UsuarioAdministrador> UsuarioAdministradors = UsuarioAdministradorRepository.findAll();
-		List<UsuarioAdministradorDTO> UsuarioAdministradorDTO = new ArrayList<UsuarioAdministradorDTO>();
+        Iterable<UsuarioAdministrador> usuarioAdministradors = usuarioAdministradorRepository.findAll();
+		List<UsuarioAdministradorDTO> usuarioAdministradorDTO = new ArrayList<UsuarioAdministradorDTO>();
 		
-		for (UsuarioAdministrador UsuarioAdministrador : UsuarioAdministradors) {
-			UsuarioAdministradorDTO.add(modelMapper.map(UsuarioAdministrador, UsuarioAdministradorDTO.class) );
+		for (UsuarioAdministrador usuarioAdministrador : usuarioAdministradors) {
+			usuarioAdministradorDTO.add(modelMapper.map(usuarioAdministrador, UsuarioAdministradorDTO.class) );
 		}
 		
-        return UsuarioAdministradorDTO;
+        return usuarioAdministradorDTO;
         
-    };
+    }
 
-    public void eliminar(UsuarioAdministrador UsuarioAdministrador){
-        UsuarioAdministradorRepository.delete(UsuarioAdministrador);
-    };
+    public void eliminar(UsuarioAdministrador usuarioAdministrador){
+        usuarioAdministradorRepository.delete(usuarioAdministrador);
+    }
 
     public void eliminar(Long id){
-        UsuarioAdministradorRepository.deleteById(id);
-    };
+        usuarioAdministradorRepository.deleteById(id);
+    }
 
 }

@@ -57,6 +57,8 @@ public class UsuarioVotanteController {
 
     usuarioVotanteDTO.setCorreo(usuarioVotante.getCorreo());
     usuarioVotanteDTO.setNombre(usuarioVotante.getNombre());
+    usuarioVotanteDTO.setContrasena(usuarioVotante.getContrasena());
+    usuarioVotanteDTO.setId(usuarioVotanteDTO.getId());
     usuarioVotanteDTO.setNombrePerfil(usuarioVotante.getNombrePerfil());
 
     return ResponseEntity.status(HttpStatus.CREATED).body(usuarioVotanteDTO);
