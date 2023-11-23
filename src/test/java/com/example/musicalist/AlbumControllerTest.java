@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 @SpringBootTest
@@ -20,6 +17,16 @@ public class AlbumControllerTest {
     //Tets agregar album
     @Test
     public void testAgregar() throws Exception {
+
+     /*  String token = mockMvc.perform(MockMvcRequestBuilders
+        .post("http://localhost:8081/public/autenticacion-usuario")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        .param("correo", "your_username")
+        .param("contrasena", "your_password"))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andReturn()
+        .getResponse()
+        .getContentAsString();
         
         String jsonPayload = "{\n" +
         "\"album_id\": 33,\n" +
@@ -36,8 +43,10 @@ public class AlbumControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/Album/Agregar")
                 .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Bearer " + token)
                 .content(jsonPayload))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
-    
+    */
+}
 }

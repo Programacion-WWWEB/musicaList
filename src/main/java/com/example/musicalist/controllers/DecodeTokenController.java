@@ -143,7 +143,7 @@ System.out.println("Password: " + password);
     }
 
 
-    private static String decodeBase64(String base64) {
+    public String decodeBase64(String base64) {
         
         String base64Padded = base64 + "==".substring(0, (4 - base64.length() % 4) % 4);
         byte[] decodedBytes = Base64.getUrlDecoder().decode(base64Padded);

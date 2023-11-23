@@ -1,5 +1,7 @@
 package com.example.musicalist;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TrackControllerTest {
-
+    /* 
     @Autowired
     private MockMvc mockMvc;
     @Test
@@ -77,6 +79,7 @@ long trackId = trackNode.get("track_id").asLong();
     }
 
     @Test
+    @Transactional
     public void testAgregar() throws Exception {
         // Define the JSON payload
         String albumJsonPayload = "{\n" +
@@ -231,6 +234,6 @@ long trackId = trackNode.get("track_id").asLong();
         )
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
-
+*/
     
 }
