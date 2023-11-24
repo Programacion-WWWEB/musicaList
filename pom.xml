@@ -63,7 +63,6 @@
      <version>3.9</version>
    </dependency> 
 
-
    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>
@@ -91,7 +90,7 @@
     <artifactId>jnasmartcardio</artifactId>
     <version>0.1</version>
 </dependency>
- 
+
    <dependency>
      <groupId>org.scala-lang</groupId>
      <artifactId>scala-library</artifactId>

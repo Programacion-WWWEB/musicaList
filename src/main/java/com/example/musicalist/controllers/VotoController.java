@@ -50,11 +50,15 @@ public class VotoController {
     DecodeTokenController decodeTokenController = new DecodeTokenController();
     String decodedPayload = decodeTokenController.decodeBase64(parts[1]);
     System.out.println(decodedPayload);
-
+    String tokenWithoutBearer = token.replace("Bearer ", "");
+        System.out.println(token);
+        System.out.println(tokenWithoutBearer);
     String secretKey = "daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb";
+    System.out.println("Track title:" + trackDTO.getTitle());
 
+    System.out.println("Track title:" + trackDTO.getTrack_id());
     try {
-        Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(tokenWithoutBearer).getBody();
 
         System.out.println("Subject: " + claims.getSubject());
         System.out.println("Issued At: " + claims.getIssuedAt());
@@ -63,32 +67,39 @@ public class VotoController {
         String username = (String) claims.get("username");
         String password = (String) claims.get("password");
 
-        Optional<UsuarioVotante> userOptional = usuarioVotanteRepository.findUserByNombrePerfilAndContrasena(username, password);
 
+        Optional<UsuarioVotante> userOptional = usuarioVotanteRepository.findUserByNombrePerfilAndContrasena(username, password);
+       
         if (userOptional.isPresent()) {
             UsuarioVotante usuarioVotante = userOptional.get();
             UsuarioVotanteDTO usuarioVotanteDTO = new UsuarioVotanteDTO();
 
-            // ... (populate usuarioVotanteDTO)
-
-            VotoDTO votoDTO = new VotoDTO();
-            votoDTO.setId(usuarioVotanteDTO.getId());
-            votoDTO.setTrack_id(trackDTO.getTrack_id());
-            votoDTO.setUsuarioVotante(usuarioVotante);
-
             Optional<Track> trackOptional = trackRepository.findById(trackDTO.getTrack_id());
 
             if (trackOptional.isPresent()) {
+                System.out.println(trackDTO.getTitle());
+        System.out.println(trackDTO.getTrack_id());
+        System.out.println(usuarioVotante.getId());
+        System.out.println(usuarioVotanteDTO.getId());
+        System.out.println(trackOptional.get().getTrack_id());
+                VotoDTO votoDTO = new VotoDTO();
+            votoDTO.setId(usuarioVotante.getId());
+            votoDTO.setTrack_id(trackDTO.getTrack_id());
+            votoDTO.setUsuarioVotante(usuarioVotante);
                 votoDTO.setTrack(trackOptional.get());
                 Voto result = votoService.insertar(votoDTO);
+                System.out.println(result);
                 return new ResponseEntity<>(result, HttpStatus.OK);
             } else {
+                System.out.println("Bad Request");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } else {
+            System.out.println("No autorizado");
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     } catch (JwtException ex) {
+        System.out.println(ex);
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
     
@@ -109,4 +120,7 @@ public class VotoController {
         return votoService.listar();
 
     }
+
+
+
 }
