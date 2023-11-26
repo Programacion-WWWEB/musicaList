@@ -30,7 +30,7 @@ public class Genero {
     private String nombre;
 
 
-    @OneToMany(mappedBy = "genero", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "genero", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private Set<Recomendacion> recomendar = new HashSet<>();
 
 

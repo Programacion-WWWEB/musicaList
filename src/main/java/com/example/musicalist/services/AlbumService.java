@@ -28,10 +28,34 @@ public class AlbumService{
     @Autowired
     ModelMapper modelMapper;
 
-    public Album insertar(Album album){
-        List<Track> track = album.getTrackListing();
-        for (Track track2 : track) {
-            trackRepository.save(track2);
+    public Album insertar(AlbumDTO albumDTO){
+
+        Album album = new Album();
+    album.setName(albumDTO.getName());
+    album.setArtist(albumDTO.getArtist());
+    album.setType(albumDTO.getType());
+    album.setRelease_date(albumDTO.getRelease_date());
+    album.setRym_rating(albumDTO.getRym_rating());
+    album.setLanguage(albumDTO.getLanguage());
+    album.setGenres(albumDTO.getGenres());
+    album.setColorscheme(albumDTO.getColorscheme());
+
+    if (albumDTO.getTrackListing() != null) {
+        List<Track> tracks = new ArrayList<>();
+
+        for (TrackDTO trackDTO : albumDTO.getTrackListing()) {
+            Track track = new Track();
+            track.setTitle(trackDTO.getTitle());
+            track.setDuration(trackDTO.getDuration());
+            track.setTrack_id(trackDTO.getTrack_id());
+            track.setAlbum(trackDTO.getAlbum());
+            tracks.add(track);
+        }
+        album.setTrackListing(tracks);
+        
+        for (Track track : tracks) {
+            trackRepository.save(track);
+        }
         }
         return albumRepository.save(album);
     }

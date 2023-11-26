@@ -35,29 +35,29 @@ public class AlbumController {
     }
 
     @GetMapping("/Buscar/{id}")
-    public AlbumDTO buscar(@PathVariable("id")Long id){
+    public AlbumDTO buscar(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         return AlbumService.buscar(id);
     }
 
     @PostMapping("/Agregar")
-    public Album insertar(@RequestBody Album album, @RequestHeader("Authorization") String token){
+    public Album insertar(@RequestBody AlbumDTO album, @RequestHeader("Authorization") String token){
         String cleanToken = token.replace("Bearer ", "");
         System.out.println("Token recibido" + cleanToken);
         return AlbumService.insertar(album);
     }
 
     @PutMapping("/Actualizar")
-    public Album actualizar(@RequestBody Album album){
+    public Album actualizar(@RequestBody Album album, @RequestHeader("Authorization") String token){
         return AlbumService.actualizar(album);
     }
 
     @DeleteMapping("/Borrar")
-    public void eliminar(@RequestBody Album album){
+    public void eliminar(@RequestBody Album album, @RequestHeader("Authorization") String token){
         AlbumService.eliminar(album);
     }
 
     @DeleteMapping("/Borrar/{id}")
-    public void eliminar(@PathVariable("id")Long id){
+    public void eliminar(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         AlbumService.eliminar(id);
     }
 }

@@ -78,13 +78,14 @@ System.out.println("Password: " + password);
             usuarioVotanteDTO.setCorreo(usuarioVotante.getCorreo());
             usuarioVotanteDTO.setNombrePerfil(usuarioVotante.getNombrePerfil());
             usuarioVotanteDTO.setContrasena(usuarioVotante.getContrasena());
-            
+            usuarioVotanteDTO.setId(usuarioVotante.getId());
             
             Map<String, String> response = new HashMap<>();
             response.put("nombre", usuarioVotanteDTO.getNombre());
             response.put("nombre del perfil", usuarioVotanteDTO.getNombrePerfil());
             response.put("correo", usuarioVotanteDTO.getCorreo());
             response.put("contrasena", usuarioVotanteDTO.getContrasena());
+            response.put("id", usuarioVotanteDTO.getId().toString());
             return ResponseEntity.ok(response);
         } else {
             

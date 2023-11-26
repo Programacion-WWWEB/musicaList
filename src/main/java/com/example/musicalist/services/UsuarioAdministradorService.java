@@ -21,8 +21,8 @@ public class UsuarioAdministradorService{
     @Autowired
     ModelMapper modelMapper;
 
-    public UsuarioAdministrador insertar(UsuarioAdministrador UsuarioAdministrador){
-        return usuarioAdministradorRepository.save(UsuarioAdministrador);
+    public UsuarioAdministrador insertar(UsuarioAdministrador usuarioAdministrador){
+        return usuarioAdministradorRepository.save(usuarioAdministrador);
     }
 
     public UsuarioAdministrador actualizar(UsuarioAdministrador UsuarioAdministrador){

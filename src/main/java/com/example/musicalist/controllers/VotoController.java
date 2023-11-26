@@ -108,7 +108,7 @@ public class VotoController {
 
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PostMapping("/Agregar")
-    public Voto insertar(@RequestBody VotoDTO votoDTO){
+    public Voto insertar(@RequestBody VotoDTO votoDTO, @RequestHeader("Authorization") String token){
         return votoService.insertar(votoDTO);
     
     
@@ -116,7 +116,7 @@ public class VotoController {
 
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Lista")
-    public List<VotoDTO> lista(){
+    public List<VotoDTO> lista(@RequestHeader("Authorization") String token){
         return votoService.listar();
 
     }

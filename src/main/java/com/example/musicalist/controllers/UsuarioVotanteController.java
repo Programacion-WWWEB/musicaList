@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,17 +33,17 @@ public class UsuarioVotanteController {
     private UsuarioVotanteRepository usuarioVotanteRepository;
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Lista")
-    public List<UsuarioVotanteDTO> lista(){
+    public List<UsuarioVotanteDTO> lista(@RequestHeader("Authorization") String token){
         return UsuarioVotanteService.listar();
     }
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Buscar/{id}")
-    public UsuarioVotanteDTO buscar(@PathVariable("id")Long id){
+    public UsuarioVotanteDTO buscar(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         return UsuarioVotanteService.buscar(id);
     }
     @CrossOrigin(origins = {"http://localhost:4200/registrar-usuario", "http://localhost:4200/home", "http://localhost:4200"}, allowedHeaders = "*")
     @PostMapping("/Agregar")
-    public ResponseEntity<?> insertar(@RequestBody UsuarioVotante usuarioVotante){
+    public ResponseEntity<?> insertar(@RequestBody UsuarioVotanteDTO usuarioVotante, @RequestHeader("Authorization") String token){
         Optional<UsuarioVotante> existingUser = usuarioVotanteRepository
         .findUserByNombrePerfilAndContrasena(usuarioVotante.getNombrePerfil(), usuarioVotante.getContrasena());
 
@@ -51,7 +52,13 @@ public class UsuarioVotanteController {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body("User with the same credentials already exists");
     }
-    UsuarioVotanteService.insertar(usuarioVotante);
+    UsuarioVotante usuarioAInsertar = new UsuarioVotante();
+    usuarioAInsertar.setId(usuarioVotante.getId());
+    usuarioAInsertar.setNombre(usuarioVotante.getNombre());
+    usuarioAInsertar.setNombrePerfil(usuarioVotante.getNombrePerfil());
+    usuarioAInsertar.setCorreo(usuarioVotante.getCorreo());
+    usuarioAInsertar.setContrasena(usuarioVotante.getContrasena());
+    UsuarioVotanteService.insertar(usuarioAInsertar);
 
     UsuarioVotanteDTO usuarioVotanteDTO = new UsuarioVotanteDTO();
 
@@ -67,17 +74,17 @@ public class UsuarioVotanteController {
 
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PutMapping("/Actualizar")
-    public UsuarioVotante actualizar(@RequestBody UsuarioVotante UsuarioVotante){
+    public UsuarioVotante actualizar(@RequestBody UsuarioVotante UsuarioVotante, @RequestHeader("Authorization") String token){
         return UsuarioVotanteService.actualizar(UsuarioVotante);
     }
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @DeleteMapping("/Borrar")
-    public void eliminar(@RequestBody UsuarioVotante UsuarioVotante){
+    public void eliminar(@RequestBody UsuarioVotante UsuarioVotante, @RequestHeader("Authorization") String token){
         UsuarioVotanteService.eliminar(UsuarioVotante);
     }
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @DeleteMapping("/Borrar/{id}")
-    public void eliminar(@PathVariable("id")Long id){
+    public void eliminar(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         UsuarioVotanteService.eliminar(id);
     }
 }

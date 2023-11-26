@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,23 +30,23 @@ public class TrackController {
     private ModelMapper modelMapper;
     
     @GetMapping("/Lista")
-    public List<TrackDTO> lista(){
+    public List<TrackDTO> lista(@RequestHeader("Authorization") String token){
         return trackService.listar();
     }
 
     @GetMapping("/Lista/{id}")
-    public List<TrackDTO> lista(@PathVariable("id")Long id){
+    public List<TrackDTO> lista(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         return trackService.listar(id);
 
     }
 
     @GetMapping("/Buscar/{id}")
-    public TrackDTO buscar(@PathVariable("id")Long id){
+    public TrackDTO buscar(@PathVariable("id")Long id, @RequestHeader("Authorization") String token){
         return trackService.buscar(id);
     }
 
     @PostMapping("/Agregar")
-    public Track insertar(@RequestBody TrackDTO trackDTO){
+    public Track insertar(@RequestBody TrackDTO trackDTO, @RequestHeader("Authorization") String token){
         Track insertedTrack = trackService.insertar(trackDTO);
 
         return modelMapper.map(insertedTrack, Track.class);

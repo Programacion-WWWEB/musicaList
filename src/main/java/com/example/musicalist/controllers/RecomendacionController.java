@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,13 +24,13 @@ public class RecomendacionController {
 
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PostMapping("/Agregar")
-    public Recomendacion insertar(@RequestBody RecomendacionDTO recomendacionDTO){
+    public Recomendacion insertar(@RequestBody RecomendacionDTO recomendacionDTO, @RequestHeader("Authorization") String token){
 
         return recomendacionService.insertar(recomendacionDTO);
     }
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/Lista")
-    public List<RecomendacionDTO> listar(){
+    public List<RecomendacionDTO> listar(@RequestHeader("Authorization") String token){
 
         return recomendacionService.listar();
     }

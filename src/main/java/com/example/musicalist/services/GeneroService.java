@@ -21,8 +21,11 @@ public class GeneroService{
     @Autowired
     ModelMapper modelMapper;
 
-    public Genero insertar(Genero usuario){
-        return generoRepository.save(usuario);
+    public Genero insertar(GeneroDTO usuario){
+        Genero genero = new Genero();
+        genero.setId(usuario.getId());
+        genero.setNombre(usuario.getNombre());
+        return generoRepository.save(genero);
     }
 
     public Genero actualizar(Genero usuario){
