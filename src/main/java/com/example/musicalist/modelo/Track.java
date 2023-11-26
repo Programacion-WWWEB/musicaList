@@ -1,6 +1,5 @@
 package com.example.musicalist.modelo;
 
-import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +31,7 @@ public class Track {
     private String title;
 
     @Getter @Setter
-    private Time duration;
+    private Long duration; 
 
     @ManyToOne()
     @JoinColumn(name = "album_id")

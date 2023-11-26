@@ -2,7 +2,6 @@ package com.example.musicalist;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,7 +60,7 @@ public class VotoCancionTests {
         
         Track track = new Track();
         track.setTitle("La Balsa");
-        track.setDuration(Time.valueOf("00:03:30"));
+        track.setDuration(923000L);
         track.setAlbum(album);
 
         

@@ -1,7 +1,5 @@
 package com.example.musicalist.DTOs;
 
-import java.sql.Time;
-
 import com.example.musicalist.modelo.Album;
 
 import lombok.Getter;
@@ -15,7 +13,7 @@ public class TrackDTO {
     private String title;
 
     @Getter @Setter
-    private Time duration;
+    private Long duration; 
 
      @Getter @Setter
     private Album album;

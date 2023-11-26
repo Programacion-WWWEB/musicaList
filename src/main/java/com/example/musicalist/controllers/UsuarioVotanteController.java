@@ -43,7 +43,7 @@ public class UsuarioVotanteController {
     }
     @CrossOrigin(origins = {"http://localhost:4200/registrar-usuario", "http://localhost:4200/home", "http://localhost:4200"}, allowedHeaders = "*")
     @PostMapping("/Agregar")
-    public ResponseEntity<?> insertar(@RequestBody UsuarioVotanteDTO usuarioVotante, @RequestHeader("Authorization") String token){
+    public ResponseEntity<?> insertar(@RequestBody UsuarioVotanteDTO usuarioVotante){
         Optional<UsuarioVotante> existingUser = usuarioVotanteRepository
         .findUserByNombrePerfilAndContrasena(usuarioVotante.getNombrePerfil(), usuarioVotante.getContrasena());
 
