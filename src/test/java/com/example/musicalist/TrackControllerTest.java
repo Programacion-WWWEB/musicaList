@@ -18,10 +18,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TrackControllerTest {
-    /* 
+    
     @Autowired
     private MockMvc mockMvc;
     @Test
+    @Transactional
     public void testBuscar() throws Exception {
         
         String albumJsonPayload = "{\n" +
@@ -37,7 +38,9 @@ public class TrackControllerTest {
         "}";
     
     MvcResult albumResult = mockMvc.perform(MockMvcRequestBuilders
-        .post("/Album/Agregar")
+        .post("/Album/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
         .contentType(MediaType.APPLICATION_JSON)
         .content(albumJsonPayload))
         .andExpect(MockMvcResultMatchers.status().isOk())
@@ -59,7 +62,9 @@ long albumId = albumNode.get("album_id").asLong();
             "}";
     
     MvcResult trackResult = mockMvc.perform(MockMvcRequestBuilders
-            .post("/Track/Agregar")
+            .post("/Track/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(trackJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -73,7 +78,9 @@ JsonNode trackNode = objectMapper2.readTree(trackResult.getResponse().getContent
 long trackId = trackNode.get("track_id").asLong(); 
     // Step 3: Delete the track
     mockMvc.perform(MockMvcRequestBuilders
-            .get("/Track/Buscar/" + trackId)
+            .get("/Track/Buscar/" + trackId).header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk());
     }
@@ -95,7 +102,9 @@ long trackId = trackNode.get("track_id").asLong();
         "}";
 
 MvcResult albumResult = mockMvc.perform(MockMvcRequestBuilders
-        .post("/Album/Agregar")
+        .post("/Album/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
         .contentType(MediaType.APPLICATION_JSON)
         .content(albumJsonPayload))
         .andExpect(MockMvcResultMatchers.status().isOk())
@@ -116,7 +125,9 @@ long albumId = albumNode.get("album_id").asLong();
             "}";
     
     mockMvc.perform(MockMvcRequestBuilders
-            .post("/Track/Agregar")
+            .post("/Track/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(trackJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk());
@@ -124,6 +135,7 @@ long albumId = albumNode.get("album_id").asLong();
     }
 
     @Test
+    @Transactional
     public void testActualizar() throws Exception {
         // Define the JSON payload
         String albumJsonPayload = "{\n" +
@@ -139,7 +151,9 @@ long albumId = albumNode.get("album_id").asLong();
            "}";
     
     MvcResult albumResult = mockMvc.perform(MockMvcRequestBuilders
-            .post("/Album/Agregar")
+            .post("/Album/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(albumJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -161,7 +175,9 @@ long albumId = albumNode.get("album_id").asLong();
             "}";
     
     mockMvc.perform(MockMvcRequestBuilders
-            .post("/Track/Agregar")
+            .post("/Track/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(trackJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk());
@@ -170,6 +186,7 @@ long albumId = albumNode.get("album_id").asLong();
   }
 
     @Test
+    @Transactional
     public void testEliminar() throws Exception {
         
         String albumJsonPayload = "{\n" +
@@ -185,7 +202,9 @@ long albumId = albumNode.get("album_id").asLong();
         "}";
     
     MvcResult albumResult = mockMvc.perform(MockMvcRequestBuilders
-        .post("/Album/Agregar")
+        .post("/Album/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
         .contentType(MediaType.APPLICATION_JSON)
         .content(albumJsonPayload))
         .andExpect(MockMvcResultMatchers.status().isOk())
@@ -207,7 +226,9 @@ long albumId = albumNode.get("album_id").asLong();
             "}";
     
     MvcResult trackResult = mockMvc.perform(MockMvcRequestBuilders
-            .post("/Track/Agregar")
+            .post("/Track/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(trackJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -221,19 +242,24 @@ JsonNode trackNode = objectMapper2.readTree(trackResult.getResponse().getContent
 long trackId = trackNode.get("track_id").asLong(); 
     // Step 3: Delete the track
     mockMvc.perform(MockMvcRequestBuilders
-            .delete("/Track/Borrar/" + trackId)
+            .delete("/Track/Borrar/" + trackId).header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
+    @Transactional
     public void testListar() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/Track/Lista")
+                .get("/Track/Lista").header(
+                        "Authorization",
+                        "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
         )
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
-*/
+
     
 }

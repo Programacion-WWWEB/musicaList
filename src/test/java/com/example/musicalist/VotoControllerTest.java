@@ -2,18 +2,29 @@ package com.example.musicalist;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Transactional
+
 public class VotoControllerTest {
-    /* 
+    
     @Autowired
     MockMvc mockMvc;
 
     @Test
+    @Transactional
     public void testVotoAgregar() throws Exception{
 
          String albumJsonPayload = "{\n" +
@@ -29,7 +40,9 @@ public class VotoControllerTest {
             "}";
 
     MvcResult albumResult = mockMvc.perform(MockMvcRequestBuilders
-            .post("/Album/Agregar")
+            .post("/Album/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(albumJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -50,7 +63,9 @@ public class VotoControllerTest {
             "}";
 
     MvcResult trackResult = mockMvc.perform(MockMvcRequestBuilders
-            .post("/Track/Agregar")
+            .post("/Track/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
             .contentType(MediaType.APPLICATION_JSON)
             .content(trackJsonPayload))
             .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
@@ -70,7 +85,9 @@ public class VotoControllerTest {
 
 
 MvcResult usuarioVotanteResult = mockMvc.perform(MockMvcRequestBuilders
-        .post("/UsuarioVotante/Agregar")
+        .post("/UsuarioVotante/Agregar").header(
+                "Authorization",
+                "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
         .contentType(MediaType.APPLICATION_JSON)
         .content(usuarioVotanteJsonPayload))
         .andExpect(MockMvcResultMatchers.status().isCreated())
@@ -94,7 +111,9 @@ MvcResult usuarioVotanteResult = mockMvc.perform(MockMvcRequestBuilders
     "}";
 
 mockMvc.perform(MockMvcRequestBuilders
-    .post("/Voto/Agregar")
+    .post("/Voto/Agregar").header(
+        "Authorization",
+        "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
     .contentType(MediaType.APPLICATION_JSON)
     .content(votoJsonPayload))
     .andExpect(MockMvcResultMatchers.status().isOk());
@@ -105,12 +124,15 @@ mockMvc.perform(MockMvcRequestBuilders
 
 
     @Test
+    @Transactional
     public void testVotoLista() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/Voto/Lista")
+                .get("/Voto/Lista").header(
+                        "Authorization",
+                        "Bearer eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6eyJhdXRob3JpdHkiOiJQcnVlYmEifSwicGFzc3dvcmQiOiJhcXVuZW9nIiwidXNlcm5hbWUiOiJvaW11biIsInN1YiI6Im9pbXVuIiwiaWF0IjoxNzAxMDUwOTYyLCJleHAiOjE3MDE2NTU3NjJ9.FDKHjLEBbpPU9Q-mGI069zV1hF6x2I5f47S7tQTroec9926HYsk1dwcwrfi7TeXI")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    */
+    
 }

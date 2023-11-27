@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.musicalist.DTOs.TrackDTO;
@@ -22,6 +24,7 @@ import com.example.musicalist.modelo.UsuarioVotante;
 import com.example.musicalist.modelo.Voto;
 import com.example.musicalist.respositories.TrackRepository;
 import com.example.musicalist.respositories.UsuarioVotanteRepository;
+import com.example.musicalist.respositories.VotoRepository;
 import com.example.musicalist.services.VotoService;
 
 import io.jsonwebtoken.Claims;
@@ -33,6 +36,9 @@ public class VotoController {
 
     @Autowired
     VotoService votoService;
+
+    @Autowired
+    VotoRepository votoRepository;
 
     @Autowired
     UsuarioVotanteRepository usuarioVotanteRepository;
@@ -118,6 +124,24 @@ public class VotoController {
     @GetMapping("/Lista")
     public List<VotoDTO> lista(@RequestHeader("Authorization") String token){
         return votoService.listar();
+
+    }
+    
+        @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+        @PostMapping("/check")
+    public boolean checkVotoExistence(
+            @RequestParam Long trackId,
+            @RequestParam Long userId,
+            @RequestHeader("Authorization") String token
+    ) {
+        List<Object[]> result = votoRepository.sqlFindById(trackId, userId);
+        return !result.isEmpty();
+    }
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    @DeleteMapping("/Borrar")
+    public void eliminar(@RequestBody VotoDTO voto){
+
+        votoService.eliminar(voto);
 
     }
 

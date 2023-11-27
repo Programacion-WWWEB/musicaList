@@ -8,27 +8,34 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
 @IdClass(VotoId.class)
 public class Voto {
 
     @Id
+    
     private Long id;
 
     @Id
+    
     private Long track_id;
     
 
     @ManyToOne()
     @JoinColumn(name = "id" , insertable = false, updatable = false)
     @JsonIgnore
+    @Getter @Setter
     UsuarioVotante usuarioVotante;
 
     
     @ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "track_id", insertable = false, updatable = false)
+    @Getter @Setter
     Track track;
 
     public Voto(){};

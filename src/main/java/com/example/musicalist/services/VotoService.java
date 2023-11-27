@@ -88,7 +88,11 @@ for (Object[] result : results) {
                 for (Object[] result : results) {
                     
                     BigInteger trackId = (BigInteger) result[0];
-                    String duration = (String) result[1]; 
+                    
+                    
+                    BigInteger duration = (result[1] != null) ? (BigInteger) result[1] : null;
+
+
             
                     String title = (String) result[2];
 
@@ -106,6 +110,9 @@ for (Object[] result : results) {
                     Track trackEntity = new Track();
                     trackEntity.setTrack_id(trackId.longValue());
                     trackEntity.setTitle(title);
+                    if (duration != null) {
+                        trackEntity.setDuration(duration.longValue());
+                    }
                     trackEntity.setAlbum(album.get());
                     UsuarioVotante usuarioVotante = new UsuarioVotante();
                     usuarioVotante.setId(usuarioVotanteId.longValue());
@@ -126,6 +133,16 @@ for (Object[] result : results) {
                 }
         return votoDTOs;
         
+    }
+
+    public void eliminar(VotoDTO votoDTO) {
+        
+        Voto votoToDelete = new Voto();
+        
+        votoToDelete.setUsuarioVotante(votoDTO.getUsuarioVotante());
+        votoToDelete.setTrack(votoDTO.getTrack());
+
+        votoRepository.delete(votoToDelete);
     }
 
     }
