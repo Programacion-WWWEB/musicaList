@@ -138,7 +138,8 @@ for (Object[] result : results) {
     public void eliminar(VotoDTO votoDTO) {
         
         Voto votoToDelete = new Voto();
-        
+        votoToDelete.setId(votoDTO.getId());
+        votoToDelete.setTrack_id(votoDTO.getTrack_id());
         votoToDelete.setUsuarioVotante(votoDTO.getUsuarioVotante());
         votoToDelete.setTrack(votoDTO.getTrack());
 

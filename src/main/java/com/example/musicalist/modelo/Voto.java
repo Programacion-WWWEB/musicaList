@@ -17,14 +17,13 @@ import lombok.Setter;
 public class Voto {
 
     @Id
-    
+    @Getter @Setter
     private Long id;
 
     @Id
-    
+    @Getter @Setter
     private Long track_id;
     
-
     @ManyToOne()
     @JoinColumn(name = "id" , insertable = false, updatable = false)
     @JsonIgnore

@@ -1,10 +1,13 @@
 package com.example.musicalist.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +34,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/Voto")
 public class VotoController {
 
@@ -46,7 +50,7 @@ public class VotoController {
     @Autowired
     TrackRepository trackRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    
     @PostMapping("/AgregarClick")
     public ResponseEntity<Voto> insertar(@RequestBody TrackDTO trackDTO, @RequestHeader("Authorization") String token){
 
@@ -112,7 +116,7 @@ public class VotoController {
     
     }
 
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    
     @PostMapping("/Agregar")
     public Voto insertar(@RequestBody VotoDTO votoDTO, @RequestHeader("Authorization") String token){
         return votoService.insertar(votoDTO);
@@ -120,23 +124,30 @@ public class VotoController {
     
     }
 
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    
     @GetMapping("/Lista")
     public List<VotoDTO> lista(@RequestHeader("Authorization") String token){
         return votoService.listar();
 
     }
     
-        @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-        @PostMapping("/check")
-    public boolean checkVotoExistence(
-            @RequestParam Long trackId,
-            @RequestParam Long userId,
-            @RequestHeader("Authorization") String token
-    ) {
-        List<Object[]> result = votoRepository.sqlFindById(trackId, userId);
-        return !result.isEmpty();
-    }
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
+@PostMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<?> checkVotoExistence(
+        @RequestParam Long trackId,
+        @RequestParam Long userId,
+        @RequestHeader("Authorization") String token
+) {
+    List<Object[]> result = votoRepository.sqlFindById(trackId, userId);
+    boolean exists = !result.isEmpty();
+
+    
+    Map<String, Object> response = new HashMap<>();
+    response.put("result", exists);
+
+    
+    return ResponseEntity.ok(response);
+}
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @DeleteMapping("/Borrar")
     public void eliminar(@RequestBody VotoDTO voto){
